@@ -9,7 +9,8 @@ public class RadioTest {
     private Radio next = new Radio();
     private Radio volume = new Radio();
 
-    //Станции - установка новой станции в пределах диапазона
+    //Станции -------------------------
+    //установка новой станции в пределах диапазона
     @Test
     public void shouldInstallNewStation() {
         station.setCurrentRadioStation(7);
@@ -46,69 +47,50 @@ public class RadioTest {
     //Перебор станций вниз
     @Test
     public void shouldNextStationRangeDown() {
-        next.setStationDown(7);
+        next.setCurrentRadioStation(7);
+        next.setStationDown();
         assertEquals(6, next.getCurrentRadioStation());
     }
 
-    //Тест для покрытия 100% при переборе станций вниз
-    @Test
-    public void shouldNextStationRangeDownOver() {
-        next.setStationDown(10);
-        assertEquals(0, next.getCurrentRadioStation());
-    }
 
     //Перебор станций вверх
     @Test
     public void shouldNextStationRangeUp() {
-        next.setStationUp(7);
-        assertEquals(8, next.getCurrentRadioStation());
+        next.setCurrentRadioStation(3);
+        next.setStationUp();
+        assertEquals(4, next.getCurrentRadioStation());
     }
 
-    //Тест для покрытия 100% при переборе станций вверх
-    @Test
-    public void shouldNextStationRangeUpOver() {
-        next.setStationUp(-1);
-        assertEquals(0, next.getCurrentRadioStation());
-    }
 
-    //Громкость - регулировка вниз
-    @Test
-    public void shouldIncreaseVolumeDown() {
-        volume.increaseVolumeDown(8);
-        assertEquals(7, volume.getCurrentRadioVolume());
-    }
-
-    //Тест для покрытия 100% по регулировке громкости вниз
-    @Test
-    public void shouldIncreaseVolumeDownOver() {
-        volume.increaseVolumeDown(11);
-        assertEquals(11, volume.getCurrentRadioVolume());
-    }
-
-    //Регулировка вверх
-    @Test
-    public void shouldIncreaseVolumeUp() {
-        volume.increaseVolumeUp(3);
-        assertEquals(4, volume.getCurrentRadioVolume());
-    }
-
-    //Тест для покрытия 100% по регулировке громкости вверх
-    @Test
-    public void shouldIncreaseVolumeUpOver() {
-        volume.increaseVolumeUp(-2);
-        assertEquals(-2, volume.getCurrentRadioVolume());
-    }
+    //Громкость -----------------------
 
     //Проверка границ вверх и вниз
     @Test
     public void volumeBorderCheckUp() {
-        volume.incorrectVolume(11);
+        volume.setCurrentVolume(11);
         assertEquals(10, volume.getCurrentRadioVolume());
     }
 
     @Test
     public void volumeBorderCheckDown() {
-        volume.incorrectVolume(-1);
+        volume.setCurrentVolume(-1);
         assertEquals(0, volume.getCurrentRadioVolume());
     }
+
+    //регулировка вниз
+    @Test
+    public void shouldIncreaseVolumeDown() {
+        volume.setCurrentVolume(8);
+        volume.increaseVolumeDown();
+        assertEquals(7, volume.getCurrentRadioVolume());
+    }
+
+    //Регулировка вверх
+    @Test
+    public void shouldIncreaseVolumeUp() {
+        volume.setCurrentVolume(3);
+        volume.increaseVolumeUp();
+        assertEquals(4, volume.getCurrentRadioVolume());
+    }
+
 }
