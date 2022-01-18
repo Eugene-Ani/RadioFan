@@ -48,12 +48,16 @@ public class Radio {
 
     //Перебор станций вниз
     public void setStationDown() {
-        currentRadioStation = currentRadioStation - 1;
+        if (currentRadioStation > 0) {
+            currentRadioStation = currentRadioStation - 1;
+        }
     }
 
     //Перебор станций вверх
     public void setStationUp() {
-        currentRadioStation++;
+        if (currentRadioStation < numbersOfStation) {
+            currentRadioStation++;
+        }
     }
 
 
