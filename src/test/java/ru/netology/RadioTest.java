@@ -5,60 +5,63 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RadioTest {
-    private Radio station = new Radio();
-    private Radio next = new Radio();
     private Radio volume = new Radio();
 
     //Станции -------------------------
-    //установка новой станции в пределах диапазона
+    //установка новой станции в пределах диапазона c установкой диапазона количества станций через конструктор
     @Test
     public void shouldInstallNewStation() {
-        station.setCurrentRadioStation(7);
-        assertEquals(7, station.getCurrentRadioStation());
+        Radio station = new Radio(5, 8);
+        assertEquals(5, station.getCurrentRadioStation());
     }
 
-    //Установка станций вне диапазона
+    //Установка станций вне диапазона в обе стороны
     @Test
     public void shouldInstallNewStationUp() {
+        Radio station = new Radio();
         station.setCurrentRadioStation(12);
         assertEquals(0, station.getCurrentRadioStation());
     }
 
     @Test
     public void shouldInstallNewStationDown() {
+        Radio station = new Radio();
         station.setCurrentRadioStation(-5);
         assertEquals(0, station.getCurrentRadioStation());
     }
 
-    //Переход с 9 на 0 станцию
+    //Переход с максимума на 0 станцию
     @Test
     public void shouldNextStation() {
-        next.setStationOutRange(10);
-        assertEquals(0, next.getCurrentRadioStation());
+        Radio station = new Radio(9, 8);
+        station.setStationOutRange(9);
+        assertEquals(0, station.getCurrentRadioStation());
     }
 
-    //Переход с 0 на 9 станцию
+    //Переход с 0 на максимальную станцию
     @Test
     public void shouldPreviousStation() {
-        next.setStationOutRange(-1);
-        assertEquals(9, next.getCurrentRadioStation());
+        Radio station = new Radio(-1, 8);
+        station.setStationOutRange(-1);
+        assertEquals(8, station.getCurrentRadioStation());
     }
 
     //Перебор станций вниз
     @Test
     public void shouldNextStationRangeDown() {
-        next.setCurrentRadioStation(7);
-        next.setStationDown();
-        assertEquals(6, next.getCurrentRadioStation());
+        Radio station = new Radio();
+        station.setCurrentRadioStation(7);
+        station.setStationDown();
+        assertEquals(6, station.getCurrentRadioStation());
     }
-
 
     //Перебор станций вверх
     @Test
     public void shouldNextStationRangeUp() {
-        next.setCurrentRadioStation(3);
-        next.setStationUp();
-        assertEquals(4, next.getCurrentRadioStation());
+        Radio station = new Radio();
+        station.setCurrentRadioStation(3);
+        station.setStationUp();
+        assertEquals(4, station.getCurrentRadioStation());
     }
 
 
@@ -67,8 +70,8 @@ public class RadioTest {
     //Проверка границ вверх и вниз
     @Test
     public void volumeBorderCheckUp() {
-        volume.setCurrentVolume(11);
-        assertEquals(10, volume.getCurrentRadioVolume());
+        volume.setCurrentVolume(110);
+        assertEquals(100, volume.getCurrentRadioVolume());
     }
 
     @Test
