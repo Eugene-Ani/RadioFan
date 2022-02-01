@@ -1,7 +1,9 @@
 package ru.netology;
+
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Data;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -10,9 +12,6 @@ public class Radio {
     private int currentRadioStation; // текущая радиостанция
     private int numbersOfStation = 9; // количество радиостанций по умолчанию (10)
     private int currentVolume; // текущая громкость
-
-//    public Radio() {
-//    }
 
     public Radio(int currentRadioStation, int numbersOfStation) {
         this.currentRadioStation = currentRadioStation;
