@@ -14,24 +14,24 @@ public class Radio {
 
     //СТАНЦИИ-----------------
     //Задание границ шкалы станций и установка станции в пределах диапазона
-    public void setCurrentRadioStation(int CurrentRadioStation) {
-        if (CurrentRadioStation < 0) {
+    public void setCurrentRadioStation(int currentRadioStation) {
+        if (currentRadioStation < 0) {
             return;
         }
-        if (CurrentRadioStation > 9) {
+        if (currentRadioStation > 9) {
             return;
         } else {
-            this.currentRadioStation = CurrentRadioStation;
+            this.currentRadioStation = currentRadioStation;
         }
     }
 
     //Переход с 9 станции на 0 и Переход с 0 станции на 9
-    public void setStationOutRange(int CurrentRadioStation) {
-        if (CurrentRadioStation == 10) {
-            currentRadioStation = 0;
+    public void setStationOutRange(int currentRadioStation) {
+        if (currentRadioStation == 10) {
+            this.currentRadioStation = 0;
         }
-        if (CurrentRadioStation == -1) {
-            currentRadioStation = 9;
+        if (currentRadioStation == -1) {
+            this.currentRadioStation = 9;
         }
     }
 
