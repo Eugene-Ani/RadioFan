@@ -17,48 +17,46 @@ public class RadioTest {
         assertEquals(7, station.getCurrentRadioStation());
     }
 
-    //Установка станций вне диапазона
+    //Установка станций вне диапазона в обе стороны
     @Test
     public void shouldInstallNewStationUp() {
-        station.setCurrentRadioStation(12);
+        station.setCurrentRadioStation(10);
         assertEquals(0, station.getCurrentRadioStation());
     }
 
     @Test
     public void shouldInstallNewStationDown() {
-        station.setCurrentRadioStation(-5);
+        station.setCurrentRadioStation(-1);
         assertEquals(0, station.getCurrentRadioStation());
     }
 
-    //Переход с 9 на 0 станцию
+    //Перебор станций вверх
     @Test
     public void shouldNextStation() {
-        next.setStationOutRange(10);
-        assertEquals(0, next.getCurrentRadioStation());
-    }
-
-    //Переход с 0 на 9 станцию
-    @Test
-    public void shouldPreviousStation() {
-        next.setStationOutRange(-1);
-        assertEquals(9, next.getCurrentRadioStation());
+        next.setToNextStation(7);
+        assertEquals(8, next.getCurrentRadioStation());
     }
 
     //Перебор станций вниз
     @Test
+    public void shouldPreviousStation() {
+        next.setToPreviousStation(5);
+        assertEquals(4, next.getCurrentRadioStation());
+    }
+
+    //Тест верхней границы
+    @Test
     public void shouldNextStationRangeDown() {
-        next.setCurrentRadioStation(7);
-        next.setStationDown();
-        assertEquals(6, next.getCurrentRadioStation());
+        next.setToNextStation(9);
+        assertEquals(0, next.getCurrentRadioStation());
     }
 
 
-    //Перебор станций вверх
+    //Тест нижней границы
     @Test
     public void shouldNextStationRangeUp() {
-        next.setCurrentRadioStation(3);
-        next.setStationUp();
-        assertEquals(4, next.getCurrentRadioStation());
+        next.setToPreviousStation(0);
+        assertEquals(9, next.getCurrentRadioStation());
     }
 
 

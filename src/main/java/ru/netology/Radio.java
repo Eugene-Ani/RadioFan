@@ -13,36 +13,31 @@ public class Radio {
     }
 
     //СТАНЦИИ-----------------
-    //Задание границ шкалы станций и установка станции в пределах диапазона
+
     public void setCurrentRadioStation(int currentRadioStation) {
         if (currentRadioStation < 0) {
             return;
         }
         if (currentRadioStation > 9) {
             return;
-        } else {
-            this.currentRadioStation = currentRadioStation;
         }
+        this.currentRadioStation = currentRadioStation;
     }
 
-    //Переход с 9 станции на 0 и Переход с 0 станции на 9
-    public void setStationOutRange(int currentRadioStation) {
-        if (currentRadioStation == 10) {
+    public void setToNextStation(int currentRadioStation) {
+        if (currentRadioStation == 9) {
             this.currentRadioStation = 0;
+        } else {
+            this.currentRadioStation = currentRadioStation + 1;
         }
-        if (currentRadioStation == -1) {
+    }
+
+    public void setToPreviousStation(int currentRadioStation) {
+        if (currentRadioStation == 0) {
             this.currentRadioStation = 9;
+        } else {
+            this.currentRadioStation = currentRadioStation - 1;
         }
-    }
-
-    //Перебор станций вниз
-    public void setStationDown() {
-        currentRadioStation = currentRadioStation - 1;
-    }
-
-    //Перебор станций вверх
-    public void setStationUp() {
-        currentRadioStation++;
     }
 
 
@@ -70,5 +65,4 @@ public class Radio {
     }
 
 }
-
 
